@@ -1,7 +1,9 @@
 const features = require('./features');
 
 const prettyPrint = (data) => {
+  if (typeof (data) !== 'undefined') {
     console.log(JSON.stringify(data, undefined, 2));
+  }
 };
 
 const parseArgs = (cmdlineArgs) => {

@@ -17,7 +17,7 @@ const filter = (data, str) => {
       return c;
     }
   });
-  return data;
+  return data.length ? data : undefined;
 };
 
 const count = (data) => {

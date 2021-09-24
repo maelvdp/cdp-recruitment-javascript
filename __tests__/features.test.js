@@ -49,8 +49,8 @@ describe('features', () => {
       expect(filter(sample, 'oo')).toEqual(expected);
     });
 
-    test('filter data, empty return', () => {
-      expect(filter(sample, 'rx').length).toEqual(0);
+    test('filter data, no return', () => {
+      expect(filter(sample, 'rx')).toBeUndefined();
     });
   });
 });
