@@ -1,7 +1,9 @@
 const features = require('./features');
 
 const prettyPrint = (data) => {
+  if (typeof (data) !== 'undefined') {
     console.log(JSON.stringify(data, undefined, 2));
+  }
 };
 
 const parseArgs = (cmdlineArgs) => {
@@ -19,6 +21,9 @@ const parseArgs = (cmdlineArgs) => {
 const handleArgs = (data, cmdlineArgs) => {
   const params = parseArgs(cmdlineArgs);
   switch (params.fct) {
+    case 'filter':
+      data = features.filter(data, params.arg);
+      break;
     case 'count':
       data = features.count(data);
       break;

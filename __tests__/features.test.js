@@ -19,5 +19,38 @@ describe('features', () => {
     });
   });
 
+  describe('filter', () => {
+    test('Error when no input data', () => {
+      expect(() => filter()).toThrow('no input data');
+    });
 
+    test('Error when empty or undefined filter', () => {
+      const msg = 'Filter must be a non empty string';
+      expect(() => filter(sample, '')).toThrow(msg);
+      expect(() => filter(sample)).toThrow(msg);
+    });
+
+    test('filter data', () => {
+      const expected = [
+        {
+          name: 'Absurdistan',
+          people: [
+            {
+              name: 'Sophie Stiquey',
+              animals: [
+                {
+                  name: 'Cow Kangaroo',
+                },
+              ],
+            },
+          ],
+        },
+      ];
+      expect(filter(sample, 'oo')).toEqual(expected);
+    });
+
+    test('filter data, no return', () => {
+      expect(filter(sample, 'rx')).toBeUndefined();
+    });
+  });
 });
