@@ -19,6 +19,9 @@ const parseArgs = (cmdlineArgs) => {
 const handleArgs = (data, cmdlineArgs) => {
   const params = parseArgs(cmdlineArgs);
   switch (params.fct) {
+    case 'filter':
+      data = features.filter(data, params.arg);
+      break;
     case 'count':
       data = features.count(data);
       break;

@@ -3,6 +3,7 @@ const features = require('../features');
 
 jest.mock('../features', () => ({
   count: jest.fn(),
+  filter: jest.fn(),
 }));
 
 describe('CLI', () => {
@@ -31,6 +32,10 @@ describe('CLI', () => {
 
     test('call count feature', () => {
       cli.handleArgs(data, ['--count']);
+      expect(features.count).toHaveBeenCalled();
+    });
+    test('call filter feature', () => {
+      cli.handleArgs(data, ['--filter=rx']);
       expect(features.count).toHaveBeenCalled();
     });
   });
