@@ -15,7 +15,7 @@ describe('CLI', () => {
 
   describe('parseArgs', () => {
     test('parse command line argument', () => {
-      const args = ['--test=dummy', '--test2'];
+      const args = ['--test=dummy'];
       const expected = { arg: 'dummy', fct: 'test' };
       expect(cli.parseArgs(args)).toEqual(expected);
     });
@@ -30,10 +30,15 @@ describe('CLI', () => {
       expect(() => cli.handleArgs(data, ['--invalid'])).toThrow("unkown argument '--invalid'");
     });
 
+    test('test multiples arguments', () => {
+      expect(() => cli.handleArgs(data, ['--filter=oo','--count'])).toThrow("only one argument handled for now");
+    });
+
     test('call count feature', () => {
       cli.handleArgs(data, ['--count']);
       expect(features.count).toHaveBeenCalled();
     });
+
     test('call filter feature', () => {
       cli.handleArgs(data, ['--filter=rx']);
       expect(features.count).toHaveBeenCalled();
