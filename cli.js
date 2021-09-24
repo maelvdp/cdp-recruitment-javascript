@@ -8,7 +8,10 @@ const prettyPrint = (data) => {
 
 const parseArgs = (cmdlineArgs) => {
   if (cmdlineArgs && cmdlineArgs[0]) {
-    const arg = cmdlineArgs[0]; // just one arg handled for now
+    if (cmdlineArgs.length != 1) {
+      throw new Error('only one argument handled for now');
+    }
+    const arg = cmdlineArgs[0];
     const regexp = /--([a-z]+)(=([a-z]+))?/;
     const match = arg.match(regexp);
     if (match) {
